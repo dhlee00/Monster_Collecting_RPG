@@ -167,6 +167,9 @@
 
 <details><summary><b>포획</b></summary>
 
+<img width="654" height="368" alt="KakaoTalk_20261012_235034714_01" src="https://github.com/user-attachments/assets/3571fe05-139a-433b-a035-25348010c3ee" />
+<img width="654" height="368" alt="KakaoTalk_20261012_235034714" src="https://github.com/user-attachments/assets/1a58f9af-031d-402d-9584-7f5af7757ea0" />
+
 #### 코드 [(전체 코드)](Scripts/Battle/MonsterBall_Catch.cs)
 
 * 체력 비례 포획 확률 산출
