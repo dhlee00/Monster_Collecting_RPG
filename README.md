@@ -24,6 +24,10 @@
 
 <details><summary><b>턴제 전투 시스템</b></summary>
 
+<img width="654" height="368" alt="KakaoTalk_20261013_000215427_01" src="https://github.com/user-attachments/assets/84712be1-cc36-4af3-9064-a1fdd5d20d9d" />
+<img width="654" height="368" alt="KakaoTalk_20261013_000215427" src="https://github.com/user-attachments/assets/038a5d19-d5e1-4c73-a0d8-c4d11883bb03" />
+
+
 #### 코드 [(전체 코드)](Scripts/Battle/BattleManager.cs)
 
 * 전투 메인 루프
