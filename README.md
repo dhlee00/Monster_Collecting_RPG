@@ -22,40 +22,48 @@
 
 ## 주요 기능
 
-<details><summary><b>일반 적 행동 패턴 설계</b></summary>
-
-<img width="654" height="368" alt="KakaoTalk_20261008_211834369" src="https://github.com/user-attachments/assets/3dd656b4-a8df-4376-8e50-08bb0f0454c4" />
-<img width="654" height="368" alt="KakaoTalk_20261008_213039812" src="https://github.com/user-attachments/assets/967c52fe-c7e8-436e-84b7-c881826a706a" />
-
+<details><summary><b>턴제 전투 시스템</b></summary>
 
 #### 코드 [(전체 코드)](Scripts/EnemyManager.cs)
 
-* 플레이어 감지
+* 전투 메인 루프
   ```csharp
-  private void Update()
+  void Update()
   {
-      // 플레이어 X, Y 거리 차이 계산
-      detectDisX = Mathf.Abs(pm.transform.position.x - transform.position.x);
-      detectDisY = Mathf.Abs(pm.transform.position.y - transform.position.y);
-
-      // 이동 방향에 따른 레이의 발사 위치 설정
-      if (dir > 0)
+      // 스페이스바, 마우스 클릭하면 진행
+      if (bt.gameObject.activeSelf && !bt.isPrint && !selectView.activeSelf && !catchMotion &&
+          skillEffect.childCount <= 0 && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
       {
-          gizmos = 1;
-      }
+          progressNum++;
 
-      else if (dir < 0)
-      {
-          gizmos = -1;
-      }
+          // 전투 돌입 / 승리 / 패배 등 공통 상태 처리
+          if (state == BattleState.battleEnter) { BattleEnter(); }
+          else if (state == BattleState.win) { Win(); }
+          else if (state == BattleState.lose) { Lose(); }
 
-      // 전방 지형 및 플레이어 감지를 위한 레이 발사
-      Debug.DrawRay(transform.position + new Vector3(gizmos * 0.9f, 0, 0), Vector2.down * 1.8f, Color.red);
-      hit = Physics2D.Raycast(transform.position + new Vector3(gizmos * 0.9f, 0, 0), Vector2.down, 1.8f, mask);
+          // 플레이어 턴일 때의 상태별 분기
+          if (turn == Turn.player)
+          {
+              switch (state)
+              {
+                  case BattleState.selectAction: SelectAction(); break;
+                  case BattleState.Attack: SkillAttack(); break;
+                  case BattleState.useBall: UseBall(); break;
+                  case BattleState.useMedi: UseMedi(); break;
+                  case BattleState.switchPokemon: SwitchPokemon(); break;
+                  case BattleState.run: Run(); break;
+              }
+          }
+
+          // 적 턴일 때의 분기
+          else if (turn == Turn.enemy)
+          {
+              if (state == BattleState.Attack) { SkillAttack(); }
+          }
+      }
   }
   ```
-  > 실시간으로 변하는 플레이어와의 거리를 매 프레임 측정하여 상태 전환의 기준으로 삼았습니다.<br>
-  적의 이동 방향의 전방 아래로 레이를 발사해 지형이 끊기는 것을 감지하여 이동을 제어하도록 구현했습니다.
+  > 플레이어의 턴과 적의 턴, 그리고 전투 상태(BattleState)에 따라 스페이스바 또는 마우스 클릭을 통해 전투를 진행하는 방식입니다.
   <br>
   
 * 행동 처리
