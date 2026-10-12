@@ -24,7 +24,7 @@
 
 <details><summary><b>턴제 전투 시스템</b></summary>
 
-#### 코드 [(전체 코드)](Scripts/EnemyManager.cs)
+#### 코드 [(전체 코드)](Scripts/Battle/BattleManager.cs)
 
 * 전투 메인 루프
   ```csharp
@@ -167,7 +167,7 @@
 
 <details><summary><b>포획</b></summary>
 
-#### 코드 [(전체 코드)](Scripts/BossManager.cs)
+#### 코드 [(전체 코드)](Scripts/Battle/MonsterBall_Catch.cs)
 
 * 체력 비례 포획 확률 산출
   ```csharp
