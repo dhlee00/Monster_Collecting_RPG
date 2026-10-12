@@ -6,7 +6,7 @@
 
 ---
 
-📺 [시연 영상 (YouTube)](링크)<br>
+📺 [시연 영상 (YouTube)](https://youtu.be/EtpCxuHrIes)<br>
 🎮 [빌드 파일 다운로드 (Google Drive)](https://drive.google.com/file/d/1_Wsr3XtI5ea3kRhgjeTB3sUYH7AQzini/view?usp=drive_link)<br>
 📄 [기획서](https://github.com/dhlee00/Pokemon_Imitation/blob/main/%ED%8F%AC%EC%BC%93%EB%AA%AC%EC%8A%A4%ED%84%B0%20%EB%AA%A8%EC%9E%91%20%EA%B8%B0%ED%9A%8D%EC%84%9C.pdf)
 
