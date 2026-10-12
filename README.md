@@ -66,25 +66,64 @@
   > 플레이어의 턴과 적의 턴, 그리고 전투 상태(BattleState)에 따라 스페이스바 또는 마우스 클릭을 통해 전투를 진행하는 방식입니다.
   <br>
   
-* 행동 처리
+* 공격 처리
   ```csharp
-  private void Update()
+  void SkillAttack()
   {
-      // 이동
-      rig.velocity = new Vector2(dir * speed, rig.velocity.y);
+      int accuracy = Random.Range(1, 101);
 
-      // 적 상태에 따른 행동 함수 호출
-      switch (eState)
+      // 명중
+      if (accuracy <= MyPokemon.pokemon[0].skill[skillNum].skill_Accuracy)
       {
-          case EnemyState.Idle: Idle(); break;
-          case EnemyState.Walk: Walk(); break;
-          case EnemyState.Attack: Attack(); break;
-          case EnemyState.Damaged: break;
-          case EnemyState.Die: Die(); break;
+          enemyAnim.Play("EnemyDamage");
+
+          // 30% 확률로 급소공격
+          int critical = Random.Range(1, 11);
+
+          if (critical <= 3)
+          {
+              bt.PrintBattleInfo("급소에 맞았다!");
+              TakeDamage(enemyPokemon, Damage(MyPokemon.pokemon[0], skillNum, enemyPokemon, true));
+          }
+
+          else
+          {
+              bt.PrintBattleInfo("공격이 명중했다!");
+              TakeDamage(enemyPokemon, Damage(MyPokemon.pokemon[0], skillNum, enemyPokemon));
+          }
+      }
+
+      // 빗나감
+      else if (accuracy > MyPokemon.pokemon[0].skill[skillNum].skill_Accuracy)
+      {
+          bt.PrintBattleInfo("공격이 빗나갔다!");
       }
   }
   ```
-  > 변수에 저장해둔 플레이어와의 거리 값을 기준으로 대기, 이동, 공격 중 한가지를 실행합니다.
+  > 스킬의 명중률을 기반으로 1~100 사이의 난수를 통해 적중 여부를 판정합니다.<br>
+  공격이 명중했을 경우 30% 확률로 급소 판정을 거쳐 추가 데미지를 부여합니다.
+  <br>
+
+* 데미지 산출 방식
+  ```csharp
+  float Damage(Pokemon attacker, int skillNum, Pokemon defender, bool critical = false)
+  {
+      // (공격력 * 기술 위력)의 85% - (방어력의 85%)
+      float damage = ((attacker.attack * attacker.skill[skillNum].skill_Damage) * 0.85f) - (defender.defence * 0.85f);
+
+      // 급소 공격 시 30% 추가
+      if (critical) damage *= 1.3f;
+
+      // 최종 데미지는 반올림
+      damage = Mathf.RoundToInt(damage);
+
+      // 최소 데미지 3
+      return Mathf.Max(3, damage);
+  }
+  ```
+  > 공격자의 공격력과 기술 위력을 곱한 값의 85%에서 피격자의 방어력의 85%를 차감하여 기본 데미지를 산출합니다.<br>
+  급소 공격 성공 시 기본 데미지의 30%만큼 추가 보정이 적용되며 최종 데미지는 반올림 처리합니다.<br>
+  또한 최소 3의 데미지가 보장되도록 설정했습니다.
   <br>
   
 #### 설계 의도
