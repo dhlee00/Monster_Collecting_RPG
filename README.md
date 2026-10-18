@@ -8,7 +8,7 @@
 
 📺 [시연 영상 (YouTube)](https://youtu.be/EtpCxuHrIes)<br>
 🎮 [빌드 파일 다운로드 (Google Drive)](https://drive.google.com/file/d/1_Wsr3XtI5ea3kRhgjeTB3sUYH7AQzini/view?usp=drive_link)<br>
-📄 [기획서](몬스터 수집 턴제 RPG 모작 기획서.pdf)
+📄 [기획서](https://github.com/dhlee00/Monster_Collecting_RPG/blob/main/%EB%AA%AC%EC%8A%A4%ED%84%B0%20%EC%88%98%EC%A7%91%20%ED%84%B4%EC%A0%9C%20RPG%20%EB%AA%A8%EC%9E%91%20%EA%B8%B0%ED%9A%8D%EC%84%9C.pdf)
 
 ---
 
