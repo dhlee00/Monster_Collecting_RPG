@@ -1,6 +1,6 @@
-# 포켓몬스터 모작
+# 몬스터 수집 턴제 RPG 모작
 
-인기게임인 포켓몬스터를 모작한 게임입니다.
+인기 몬스터 수집 턴제 RPG 게임을 모작한 게임입니다.
 
 <img width="654" height="368" alt="KakaoTalk_20261012_175507292" src="https://github.com/user-attachments/assets/eccf9307-77be-497f-b83e-85bc565a8e80" />
 
